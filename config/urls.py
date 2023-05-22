@@ -32,9 +32,11 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 urlpatterns = [
+    path('products/', include('products.urls'), name='products'),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('', include('common.urls'), name='common'),
+
 ]
 
 swaggers = [
