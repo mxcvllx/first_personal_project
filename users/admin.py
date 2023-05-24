@@ -1,6 +1,15 @@
 from django.contrib import admin
 
-from users.models import User, SocialAccount
+from users.models import User, VerificationCode
 
-admin.site.register(User)
-admin.site.register(SocialAccount)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'email', 'first_name', 'last_name']
+    ordering = ['-date_joined']
+
+
+@admin.register(VerificationCode)
+class VerificationCodeAdmin(admin.ModelAdmin):
+    list_display = ["email", "code", "last_sent_time", "expired_at", "is_verified"]
+    ordering = ["-last_sent_time"]
